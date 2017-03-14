@@ -24,8 +24,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :phoenix_json_api_example, PhoenixJsonApiExample.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "phoenix",
-  password: "phoenix",
+  username: "postgres",
+  password: "postgres",
   database: "phoenix_json_api_example_dev",
   hostname: "localhost",
   pool_size: 10
