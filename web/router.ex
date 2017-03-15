@@ -14,6 +14,7 @@ defmodule PhoenixJsonApiExample.Router do
     post "/user", UserController, :create
     get "/user", UserController, :index
     get "/user/:id", UserController, :show
+    put "/user/:id", UserController, :update
 
   end
 end
