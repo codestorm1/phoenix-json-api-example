@@ -10,7 +10,10 @@ defmodule PhoenixJsonApiExample.Router do
     pipe_through :api
 
     get "/test", TestController, :index
+
+    post "/user", UserController, :create
     get "/user", UserController, :index
     get "/user/:id", UserController, :show
+
   end
 end

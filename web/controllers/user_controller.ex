@@ -1,5 +1,10 @@
+require IEx;
+require Logger;
+
 defmodule PhoenixJsonApiExample.UserController do
   use PhoenixJsonApiExample.Web, :controller
+
+  alias PhoenixJsonApiExample.User
 
   def index(conn, _params) do
     query =
@@ -20,5 +25,24 @@ defmodule PhoenixJsonApiExample.UserController do
       user
     )
   end
+
+  def new(conn, _params) do
+    changeset = User.changeset(%User{})
+    render(conn, "new.html", changeset: changeset)
+  end
+
+
+    def create(conn, %{"data" => %{ "attributes" => user_params }}) do
+      changeset = User.changeset(%User{}, user_params)
+
+      case Repo.insert(changeset) do
+        {:ok, _user} ->
+          conn
+          #|> put_flash(:info, "User created successfully.")
+          |> redirect(to: user_path(conn, :index))
+        {:error, changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
+    end
 
 end
